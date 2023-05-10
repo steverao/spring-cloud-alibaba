@@ -7,7 +7,7 @@ spring:
   cloud:
     nacos:
       config:
-        serverAddr: 127.0.0.1:8848
+        serverAddr: mse-9def4ff0-p.nacos-ans.mse.aliyuncs.com
   config:
     import:
       - nacos:nacos-config-example.properties?refresh=true

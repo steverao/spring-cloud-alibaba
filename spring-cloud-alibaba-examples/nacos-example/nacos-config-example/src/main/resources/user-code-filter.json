@@ -1,0 +1,1 @@
+{  "rules": [    {      "excludeClasses": "**"    },    {      "includeClasses": "com.alibaba.cloud.nacos.**"    }  ]}

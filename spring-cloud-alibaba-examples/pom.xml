@@ -103,7 +103,12 @@
                             <artifactId>spring-boot-maven-plugin</artifactId>
                             <configuration>
                                 <jvmArguments>
-                                    -agentlib:native-image-agent=config-merge-dir=src/main/resources/META-INF/native-image/
+<!--                                    -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,experimental-omit-config-from-classpath=src/main/resources/user-code-filter.json-->
+<!--                                    -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,caller-filter-file=src/main/resources/user-code-filter.json-->
+<!--                                    -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,experimental-configuration-with-origins-->
+                                    -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,experimental-conditional-config-filter-file=src/main/resources/conditional-filter.json,access-filter-file=src/main/resources/user-code-filter.json
+<!--                                    -agentlib:native-image-agent=config-output-dir=src/main/resources/META-INF/native-image/,experimental-conditional-config-filter-file=src/main/resources/conditional-filter.json,caller-filter-file=src/main/resources/user-code-filter.json-->
+<!--                                    -agentlib:native-image-agent=config-merge-dir=src/main/resources/META-INF/native-image/-->
                                 </jvmArguments>
                                 <image>
                                     <builder>paketobuildpacks/builder:tiny</builder>
@@ -125,9 +130,19 @@
                             <groupId>org.graalvm.buildtools</groupId>
                             <artifactId>native-maven-plugin</artifactId>
                             <configuration>
+                                <!--<agent>
+                                    <enabled>true</enabled>
+                                    <defaultMode>conditional</defaultMode>
+                                    <modes>
+                                        <conditional>
+                                            <userCodeFilterPath>src/main/resources/user-code-filter.json</userCodeFilterPath>
+                                        </conditional>
+                                    </modes>
+                                </agent>-->
                                 <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                                 <metadataRepository>
                                     <enabled>true</enabled>
+                                    <localPath>/Users/raozihao/.m2/repository/org/graalvm/buildtools/graalvm-reachability-metadata/0.9.19</localPath>
                                 </metadataRepository>
                                 <requiredVersion>22.3</requiredVersion>
                             </configuration>
